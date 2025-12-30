@@ -1,9 +1,20 @@
-import { pokemonList } from "./data.jsx";
+import { compare } from "bcryptjs";
+import { pokemonList, targetPokemon } from "./data.jsx";
 
 import styles from "./styles/App.module.css";
 import animatedWooper from "./assets/wooper.gif";
 
 function App() {
+  const handleClick = async (event) => {
+    for (const pokemon of targetPokemon) {
+      if (await compare(event.target.id, pokemon.hash)) {
+        console.log("Found one");
+        return;
+      }
+    }
+    console.log("This isn't one of the targets bruh");
+  };
+
   return (
     <div className={styles.app}>
       <h1 className={styles.heading}>
@@ -23,6 +34,7 @@ function App() {
                 src={pokemon.image}
                 className={styles.pokemon}
                 style={style}
+                onClick={(event) => handleClick(event)}
               />
             );
           })}

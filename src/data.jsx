@@ -1,3 +1,5 @@
+import { hash } from "bcryptjs";
+
 const initialPokemonList = [
   {
     id: 1,
@@ -1009,3 +1011,22 @@ export const pokemonList = initialPokemonList.map((pokemon) => {
   newPokemon.scale = Math.random() * 1.2 + 0.8;
   return newPokemon;
 });
+
+const SALT_ROUNDS = 4;
+export const targetPokemon = [
+  {
+    hash: await hash("194", SALT_ROUNDS),
+    image:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/200.png",
+  },
+  {
+    hash: await hash("6", SALT_ROUNDS),
+    image:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+  },
+  {
+    hash: await hash("129", SALT_ROUNDS),
+    image:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+  },
+];
