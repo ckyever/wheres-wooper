@@ -1017,16 +1017,19 @@ export const targetPokemon = [
   {
     hash: await hash("194", SALT_ROUNDS),
     image:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/200.png",
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/194.png",
+    isFound: false,
   },
   {
     hash: await hash("6", SALT_ROUNDS),
     image:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+    isFound: false,
   },
   {
     hash: await hash("129", SALT_ROUNDS),
     image:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+    isFound: false,
   },
 ];

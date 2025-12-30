@@ -8,11 +8,12 @@ function App() {
   const handleClick = async (event) => {
     for (const pokemon of targetPokemon) {
       if (await compare(event.target.id, pokemon.hash)) {
-        console.log("Found one");
+        pokemon.isFound = true;
+        const foundTarget = document.getElementById(pokemon.hash);
+        foundTarget.className = "";
         return;
       }
     }
-    console.log("This isn't one of the targets bruh");
   };
 
   return (
@@ -22,6 +23,19 @@ function App() {
         Where's Wooper?
       </h1>
       <div className={styles.container}>
+        <div className={styles.targets}>
+          <span>Find these pokemon</span>
+          <div className={styles.lineup}>
+            {targetPokemon.map((pokemon) => (
+              <img
+                key={pokemon.hash}
+                id={pokemon.hash}
+                src={pokemon.image}
+                className={pokemon.isFound ? "" : styles.missing}
+              />
+            ))}
+          </div>
+        </div>
         <div className={styles["search-area"]}>
           {pokemonList.map((pokemon) => {
             const style = {
