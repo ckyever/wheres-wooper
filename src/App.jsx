@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <h1>
-        Where's Wooper
+        Where's Wooper?
         <img src={animatedWooper} alt="Wooper swaying side to side" />
       </h1>
     </>
