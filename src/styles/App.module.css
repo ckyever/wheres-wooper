@@ -60,6 +60,7 @@
 
 .pokemon {
   user-select: none;
+  cursor: pointer;
   transition: transform 0.2s ease;
   border-radius: 50%;
   padding: 4px;
@@ -67,6 +68,12 @@
 }
 
 .pokemon:hover {
-  outline: 3px solid red;
-  z-index: 10;
+  content: url("../assets/pokeball.png");
+  z-index: 2;
+}
+
+.pokemon.found {
+  content: url("../assets/pokeball.png");
+  cursor: default;
+  z-index: -1;
 }

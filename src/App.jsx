@@ -11,6 +11,7 @@ function App() {
         pokemon.isFound = true;
         const foundTarget = document.getElementById(pokemon.hash);
         foundTarget.className = "";
+        event.target.classList.add(styles.found);
         return;
       }
     }
@@ -24,7 +25,7 @@ function App() {
       </h1>
       <div className={styles.container}>
         <div className={styles.targets}>
-          <span>Find these pokemon</span>
+          <span>Catch these pokemon</span>
           <div className={styles.lineup}>
             {targetPokemon.map((pokemon) => (
               <img
