@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import animatedWooper from "./assets/wooper.gif";
 
 function App() {
