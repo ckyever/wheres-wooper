@@ -2,7 +2,7 @@ import Heading from "./Heading.jsx";
 
 import styles from "../styles/StartScreen.module.css";
 
-function StartScreen({ isGameLoaded, setIsGameInProgress }) {
+function StartScreen({ isGameLoading, setIsGameInProgress }) {
   const startGame = () => {
     setIsGameInProgress(true);
     document.getElementById("start-dialog").close();
@@ -20,10 +20,10 @@ function StartScreen({ isGameLoaded, setIsGameInProgress }) {
             <br />
             Find them fast to earn a spot on the leaderboard!
           </p>
-          {isGameLoaded ? (
-            <button onClick={startGame}>Start</button>
-          ) : (
+          {isGameLoading ? (
             <span>Game is loading...</span>
+          ) : (
+            <button onClick={startGame}>Start</button>
           )}
         </div>
       </dialog>

@@ -1,4 +1,5 @@
 import { hash } from "bcryptjs";
+import { useEffect, useState } from "react";
 
 const initialPokemonList = [
   {
@@ -1003,14 +1004,28 @@ const initialPokemonList = [
   },
 ];
 
-export const pokemonList = initialPokemonList.map((pokemon) => {
-  const newPokemon = pokemon;
-  newPokemon.rotation = Math.floor(Math.random() * 40) - 20;
-  newPokemon.xTranslate = Math.floor(Math.random() * 30) - 15;
-  newPokemon.yTranslate = Math.floor(Math.random() * 30) - 15;
-  newPokemon.scale = Math.random() * 1.2 + 0.8;
-  return newPokemon;
-});
+export const usePokemonList = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [pokemonList, setPokemonList] = useState(null);
+
+  useEffect(() => {
+    const testPokemonList = initialPokemonList.map((pokemon) => {
+      const newPokemon = pokemon;
+      newPokemon.rotation = Math.floor(Math.random() * 40) - 20;
+      newPokemon.xTranslate = Math.floor(Math.random() * 30) - 15;
+      newPokemon.yTranslate = Math.floor(Math.random() * 30) - 15;
+      newPokemon.scale = Math.random() * 1.2 + 0.8;
+      return newPokemon;
+    });
+
+    setPokemonList(testPokemonList);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  return { isLoading, pokemonList };
+};
 
 const SALT_ROUNDS = 4;
 export const targetPokemon = [

@@ -1,14 +1,14 @@
 import { compare } from "bcryptjs";
 
 import Heading from "./Heading.jsx";
-import { pokemonList, targetPokemon } from "../data.jsx";
+import { targetPokemon } from "../data.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
 
 import searchAreaStyles from "../styles/SearchArea.module.css";
 import styles from "../styles/Game.module.css";
 
-function Game() {
+function Game({ pokemonList }) {
   const handlePokemonClick = async (event) => {
     for (let pokemon of targetPokemon) {
       if (await compare(event.target.id, pokemon.hash)) {
