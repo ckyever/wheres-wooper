@@ -1,6 +1,8 @@
 import { compare } from "bcryptjs";
 import { pokemonList, targetPokemon } from "../data.jsx";
 
+import Targets from "./Targets.jsx";
+
 import styles from "../styles/Game.module.css";
 import animatedWooper from "../assets/wooper.gif";
 
@@ -24,19 +26,7 @@ function Game() {
         Where's Wooper?
       </h1>
       <div className={styles.container}>
-        <div className={styles.targets}>
-          <span>Catch these pokemon</span>
-          <div className={styles.lineup}>
-            {targetPokemon.map((pokemon) => (
-              <img
-                key={pokemon.hash}
-                id={pokemon.hash}
-                src={pokemon.image}
-                className={pokemon.isFound ? "" : styles.missing}
-              />
-            ))}
-          </div>
-        </div>
+        <Targets targetPokemon={targetPokemon} />
         <div className={styles["search-area"]}>
           {pokemonList.map((pokemon) => {
             const style = {

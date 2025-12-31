@@ -27,16 +27,6 @@
   gap: 40px;
 }
 
-.targets {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid grey;
-  border-radius: 40px;
-  padding: 10px;
-}
-
 .lineup {
   display: flex;
   justify-content: center;
