@@ -1,3 +1,5 @@
+import Heading from "./Heading.jsx";
+
 import styles from "../styles/StartScreen.module.css";
 
 function StartScreen({ isGameLoaded, setIsGameInProgress }) {
@@ -10,6 +12,7 @@ function StartScreen({ isGameLoaded, setIsGameInProgress }) {
     <>
       <dialog id="start-dialog" className={styles["start-dialog"]} open>
         <div className={styles.container}>
+          <Heading />
           <p className={styles.instructions}>
             This game is Where's Wally, but with Pokemon.
             <br />
