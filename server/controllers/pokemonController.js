@@ -28,10 +28,22 @@ const getRandomPokedexNumbers = (length) => {
   return pokedexNumbers;
 };
 
+const addPokemonToTarget = async (pokemon, targets) => {
+  targets.push({
+    hash: await hash(pokemon.id, SALT_ROUNDS),
+    image: pokemon.image,
+    isFound: false,
+  });
+};
+
 const getPokemonList = async (req, res) => {
   const { length } = req.query;
 
-  const pokedexNumbers = getRandomPokedexNumbers(length);
+  const pokedexNumbers = getRandomPokedexNumbers(length - 1);
+
+  // Always include Wooper randomly in the list
+  const wooperIndex = Math.floor(Math.random() * (length - 1));
+  pokedexNumbers.splice(wooperIndex, 0, "194");
 
   const responses = await Promise.all(
     pokedexNumbers.map((number) =>
@@ -54,17 +66,16 @@ const getPokemonList = async (req, res) => {
     })
   );
 
+  // Always include Wooper as the first target
   const targets = [];
-  const bucketRange = Math.floor(length / NUMBER_OF_TARGET_POKEMON);
-  for (let i = 0; i < NUMBER_OF_TARGET_POKEMON; i++) {
+  await addPokemonToTarget(pokemonList[wooperIndex], targets);
+
+  const bucketRange = Math.floor(length / NUMBER_OF_TARGET_POKEMON - 1);
+  for (let i = 0; i < NUMBER_OF_TARGET_POKEMON - 1; i++) {
     const startNumber = 1 + i * bucketRange;
     const endNumber = (i + 1) * bucketRange;
     const randomIndex = getRandomNumberInRange(startNumber, endNumber);
-    targets.push({
-      hash: await hash(pokemonList[randomIndex].id, SALT_ROUNDS),
-      image: pokemonList[randomIndex].image,
-      isFound: false,
-    });
+    await addPokemonToTarget(pokemonList[randomIndex], targets);
   }
 
   return res.json({ targets: targets, pokemonList: pokemonList });
