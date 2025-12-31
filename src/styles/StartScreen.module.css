@@ -1,0 +1,19 @@
+.start-dialog {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 2rem;
+}
+
+.instructions {
+  text-align: center;
+}
