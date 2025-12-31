@@ -4,6 +4,7 @@ import { pokemonList, targetPokemon } from "../data.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
 
+import searchAreaStyles from "../styles/SearchArea.module.css";
 import styles from "../styles/Game.module.css";
 import animatedWooper from "../assets/wooper.gif";
 
@@ -14,7 +15,7 @@ function Game() {
         pokemon.isFound = true;
         const foundTarget = document.getElementById(pokemon.hash);
         foundTarget.className = "";
-        event.target.classList.add(styles.found);
+        event.target.classList.add(searchAreaStyles.found);
         return;
       }
     }

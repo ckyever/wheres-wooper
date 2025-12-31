@@ -3,7 +3,7 @@ import styles from "../styles/Targets.module.css";
 function Targets({ targetPokemon }) {
   return (
     <div className={styles.targets}>
-      <span>Catch these pokemon</span>
+      <span>Catch these Pokemon</span>
       <div className={styles.lineup}>
         {targetPokemon
           ? targetPokemon.map((pokemon) => (
