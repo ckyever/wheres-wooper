@@ -1,11 +1,10 @@
 .targets {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border: 1px solid grey;
-  border-radius: 40px;
-  padding: 10px;
+  font-size: 1.4rem;
+  margin-top: 40px;
 }
 
 .lineup {
@@ -15,7 +14,7 @@
 }
 
 .lineup img {
-  width: 80px;
+  width: 120px;
 }
 
 .missing {

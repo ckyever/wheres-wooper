@@ -81,3 +81,7 @@ h6 {
 :root {
   font-family: "Gamja Flower", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+body {
+  background: url("../assets/background.png") top/cover no-repeat;
+}
