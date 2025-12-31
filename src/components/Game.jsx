@@ -1,12 +1,12 @@
 import { compare } from "bcryptjs";
 
+import Heading from "./Heading.jsx";
 import { pokemonList, targetPokemon } from "../data.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
 
 import searchAreaStyles from "../styles/SearchArea.module.css";
 import styles from "../styles/Game.module.css";
-import animatedWooper from "../assets/wooper.gif";
 
 function Game() {
   const handlePokemonClick = async (event) => {
@@ -23,10 +23,7 @@ function Game() {
 
   return (
     <div className={styles.game}>
-      <h1 className={styles.heading}>
-        <img src={animatedWooper} alt="Wooper swaying side to side" />
-        Where's Wooper?
-      </h1>
+      <Heading />
       <div className={styles.container}>
         <Targets targetPokemon={targetPokemon} />
         <SearchArea

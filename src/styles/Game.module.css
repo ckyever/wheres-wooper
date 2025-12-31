@@ -6,19 +6,6 @@
   overflow: hidden;
 }
 
-.heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  font-size: 3.5rem;
-  font-weight: 500;
-}
-
-.heading img {
-  width: 60px;
-}
-
 .container {
   flex: 1;
   display: flex;
