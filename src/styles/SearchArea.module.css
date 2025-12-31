@@ -1,0 +1,26 @@
+.search-area {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 12px;
+  width: 90%;
+}
+
+.pokemon {
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 50%;
+  padding: 4px;
+  width: 80px;
+}
+
+.pokemon:hover {
+  content: url("../assets/pokeball.png");
+  z-index: 2;
+}
+
+.pokemon.found {
+  content: url("../assets/pokeball.png");
+  cursor: default;
+  z-index: -1;
+}
