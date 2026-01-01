@@ -1,4 +1,3 @@
-import { hash } from "bcryptjs";
 import { useEffect, useState } from "react";
 
 const POKEMON_LIST_LENGTH = 200;
@@ -6,6 +5,7 @@ const POKEMON_LIST_LENGTH = 200;
 export const usePokemonList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState(null);
+  const [targetPokemon, setTargetPokemon] = useState(null);
 
   useEffect(() => {
     const url = `${
@@ -29,6 +29,7 @@ export const usePokemonList = () => {
         });
 
         setPokemonList(transformedData);
+        setTargetPokemon(data.targets);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -37,27 +38,5 @@ export const usePokemonList = () => {
       });
   }, []);
 
-  return { isLoading, pokemonList };
+  return { isLoading, targetPokemon, pokemonList };
 };
-
-const SALT_ROUNDS = 4;
-export const targetPokemon = [
-  {
-    hash: await hash("194", SALT_ROUNDS),
-    image:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/194.png",
-    isFound: false,
-  },
-  {
-    hash: await hash("6", SALT_ROUNDS),
-    image:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-    isFound: false,
-  },
-  {
-    hash: await hash("129", SALT_ROUNDS),
-    image:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
-    isFound: false,
-  },
-];

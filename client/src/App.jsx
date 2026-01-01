@@ -7,7 +7,7 @@ import StartScreen from "./components/StartScreen.jsx";
 
 function App() {
   const [isGameInProgress, setIsGameInProgress] = useState(false);
-  const { isLoading, pokemonList } = usePokemonList();
+  const { isLoading, targetPokemon, pokemonList } = usePokemonList();
 
   return (
     <>
@@ -16,7 +16,9 @@ function App() {
         pokemonList={pokemonList}
         setIsGameInProgress={setIsGameInProgress}
       />
-      {!isLoading && <Game pokemonList={pokemonList} />}
+      {!isLoading && (
+        <Game targetPokemon={targetPokemon} pokemonList={pokemonList} />
+      )}
     </>
   );
 }
