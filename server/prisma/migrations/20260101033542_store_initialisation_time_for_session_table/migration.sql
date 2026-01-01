@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "session" ADD COLUMN     "init_time" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

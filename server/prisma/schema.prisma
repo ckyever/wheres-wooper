@@ -16,6 +16,7 @@ datasource db {
 model session {
   id Int @id @default(autoincrement())
   target_ids String
+  init_time DateTime @default(now())
   start_time DateTime?
   end_time DateTime?
 }
