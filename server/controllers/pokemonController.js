@@ -63,6 +63,7 @@ const getPokemonList = async (req, res) => {
     pokemonList.push({
       id: crypto.randomUUID(),
       image: pokemon.sprites.other["official-artwork"].front_default,
+      height: pokemon.height,
     })
   );
 

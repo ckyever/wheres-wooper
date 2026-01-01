@@ -24,7 +24,7 @@ export const usePokemonList = () => {
           newPokemon.rotation = Math.floor(Math.random() * 40) - 20;
           newPokemon.xTranslate = Math.floor(Math.random() * 30) - 15;
           newPokemon.yTranslate = Math.floor(Math.random() * 30) - 15;
-          newPokemon.scale = Math.random() * 1.2 + 0.8;
+          newPokemon.scale = 1 + Math.min(Number(pokemon.height) * 0.08, 2);
           return newPokemon;
         });
 
