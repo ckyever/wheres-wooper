@@ -4,6 +4,7 @@ const POKEMON_LIST_LENGTH = 200;
 
 export const usePokemonList = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [sessionId, setSessionId] = useState(null);
   const [pokemonList, setPokemonList] = useState(null);
   const [targetPokemon, setTargetPokemon] = useState(null);
 
@@ -28,6 +29,7 @@ export const usePokemonList = () => {
           return newPokemon;
         });
 
+        setSessionId(data.sessionId);
         setPokemonList(transformedData);
         setTargetPokemon(data.targets);
         setIsLoading(false);
@@ -38,5 +40,5 @@ export const usePokemonList = () => {
       });
   }, []);
 
-  return { isLoading, targetPokemon, pokemonList };
+  return { isLoading, sessionId, targetPokemon, pokemonList };
 };

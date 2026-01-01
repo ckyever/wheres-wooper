@@ -2,10 +2,15 @@ import Heading from "./Heading.jsx";
 
 import styles from "../styles/StartScreen.module.css";
 
-function StartScreen({ isGameLoading, setIsGameInProgress }) {
-  const startGame = () => {
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
+function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
+  const startGame = async () => {
     setIsGameInProgress(true);
     document.getElementById("start-dialog").close();
+
+    const startTimerUrl = `${SERVER_URL}/session/${sessionId}/start`;
+    fetch(startTimerUrl);
   };
 
   return (

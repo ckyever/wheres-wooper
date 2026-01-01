@@ -1,4 +1,5 @@
 import { compare } from "bcryptjs";
+import { useState } from "react";
 
 import Heading from "./Heading.jsx";
 import SearchArea from "./SearchArea.jsx";
@@ -7,11 +8,24 @@ import Targets from "./Targets.jsx";
 import searchAreaStyles from "../styles/SearchArea.module.css";
 import styles from "../styles/Game.module.css";
 
-function Game({ targetPokemon, pokemonList }) {
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
+function Game({ sessionId, targetPokemon, pokemonList }) {
+  const [remainingTargets, setRemainingTargets] = useState(
+    targetPokemon.length
+  );
+
   const handlePokemonClick = async (event) => {
     for (let pokemon of targetPokemon) {
       if (await compare(event.target.id, pokemon.hash)) {
-        pokemon.isFound = true;
+        const newRemainingTargets = remainingTargets - 1;
+        if (newRemainingTargets === 0) {
+          const stopTimerUrl = `${SERVER_URL}/session/${sessionId}/stop`;
+          fetch(stopTimerUrl);
+        }
+        setRemainingTargets(newRemainingTargets);
+
+        pokemon.isFound = true; //CKYTODO Remove this
         const foundTarget = document.getElementById(pokemon.hash);
         foundTarget.className = "";
         event.target.classList.add(searchAreaStyles.found);
