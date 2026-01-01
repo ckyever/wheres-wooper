@@ -6,6 +6,7 @@ import { insertSession } from "../models/sessionModel.js";
 const MAX_POKEDEX_NUMBER = 1025;
 const NUMBER_OF_TARGET_POKEMON = 3;
 const SALT_ROUNDS = 4; // Use minimum rounds since speed is the priority
+const WOOPER_POKEDEX_NUMBER = 194; // Use minimum rounds since speed is the priority
 
 const getRandomNumberInRange = (startNumber, endNumber) => {
   return (
@@ -19,8 +20,11 @@ const getRandomPokedexNumbers = (length) => {
   for (let i = 1; i <= length; i++) {
     const randomPokedexNumber = getRandomNumberInRange(1, MAX_POKEDEX_NUMBER);
 
-    if (pokedexNumbers.includes(randomPokedexNumber)) {
-      // Don't include repeats so try again
+    if (
+      pokedexNumbers.includes(randomPokedexNumber) ||
+      randomPokedexNumber == WOOPER_POKEDEX_NUMBER
+    ) {
+      // Don't include repeats or Wooper so try again
       i--;
     } else {
       pokedexNumbers.push(randomPokedexNumber);
@@ -44,7 +48,7 @@ const getPokemonList = async (req, res) => {
 
   // Always include Wooper randomly in the list
   const wooperIndex = Math.floor(Math.random() * (length - 1));
-  pokedexNumbers.splice(wooperIndex, 0, "194");
+  pokedexNumbers.splice(wooperIndex, 0, WOOPER_POKEDEX_NUMBER);
 
   const responses = await Promise.all(
     pokedexNumbers.map((number) =>
