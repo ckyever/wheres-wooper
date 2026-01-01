@@ -8,9 +8,12 @@ import {
 const startTimer = async (req, res) => {
   const { sessionId } = req.params;
 
-  const session = await updateSessionStartTime(sessionId, new Date());
-  if (session) {
-    return res.json({ message: "Timer has been started" });
+  const result = await updateSessionStartTime(sessionId, new Date());
+  if (result) {
+    const message = result.count
+      ? "Timer has been started"
+      : "Timer has already been started";
+    return res.json({ message: message });
   } else {
     return res
       .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
@@ -21,9 +24,12 @@ const startTimer = async (req, res) => {
 const stopTimer = async (req, res) => {
   const { sessionId } = req.params;
 
-  const session = await updateSessionEndTime(sessionId, new Date());
-  if (session) {
-    return res.json({ message: "Timer has been stopped" });
+  const result = await updateSessionEndTime(sessionId, new Date());
+  if (result) {
+    const message = result.count
+      ? "Timer has been stopped"
+      : "Timer has already been stopped";
+    return res.json({ message: message });
   } else {
     return res
       .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)

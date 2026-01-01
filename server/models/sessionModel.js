@@ -16,15 +16,16 @@ const insertSession = async (targetIds) => {
 
 const updateSessionStartTime = async (id, startDateTime) => {
   try {
-    const session = await prisma.session.update({
+    const result = await prisma.session.updateMany({
       where: {
         id: Number(id),
+        start_time: null,
       },
       data: {
         start_time: startDateTime,
       },
     });
-    return session;
+    return result;
   } catch (error) {
     console.error(error);
     return null;
@@ -33,15 +34,16 @@ const updateSessionStartTime = async (id, startDateTime) => {
 
 const updateSessionEndTime = async (id, endDateTime) => {
   try {
-    const session = await prisma.session.update({
+    const result = await prisma.session.updateMany({
       where: {
         id: Number(id),
+        end_time: null,
       },
       data: {
         end_time: endDateTime,
       },
     });
-    return session;
+    return result;
   } catch (error) {
     console.error(error);
     return null;
