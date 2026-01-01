@@ -25,7 +25,6 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
         }
         setRemainingTargets(newRemainingTargets);
 
-        pokemon.isFound = true; //CKYTODO Remove this
         const foundTarget = document.getElementById(pokemon.hash);
         foundTarget.className = "";
         event.target.classList.add(searchAreaStyles.found);

@@ -34,7 +34,6 @@ const addPokemonToTarget = async (pokemon, targets) => {
   targets.push({
     hash: await hash(pokemon.id, SALT_ROUNDS),
     image: pokemon.image,
-    isFound: false,
   });
 };
 
