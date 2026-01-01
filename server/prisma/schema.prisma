@@ -18,7 +18,6 @@ model session {
   target_ids String
   init_time DateTime @default(now())
   start_time DateTime?
-  end_time DateTime?
 }
 
 model highscore {

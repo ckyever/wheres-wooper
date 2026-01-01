@@ -32,24 +32,6 @@ const updateSessionStartTime = async (id, startDateTime) => {
   }
 };
 
-const updateSessionEndTime = async (id, endDateTime) => {
-  try {
-    const result = await prisma.session.updateMany({
-      where: {
-        id: Number(id),
-        end_time: null,
-      },
-      data: {
-        end_time: endDateTime,
-      },
-    });
-    return result;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 const deleteSession = async (id) => {
   try {
     const session = await prisma.session.delete({
@@ -85,7 +67,6 @@ const getSessionStartTime = async (id) => {
 export {
   insertSession,
   updateSessionStartTime,
-  updateSessionEndTime,
   deleteSession,
   getSessionStartTime,
 };

@@ -1,9 +1,9 @@
 import { constants } from "http2";
 
 import {
-  updateSessionEndTime,
   updateSessionStartTime,
   getSessionStartTime,
+  deleteSession,
 } from "../models/sessionModel.js";
 
 const startTimer = async (req, res) => {
@@ -26,26 +26,25 @@ const stopTimer = async (req, res) => {
   const { sessionId } = req.params;
 
   const endTime = new Date();
-  // CKYTODO: Don't need to start end time?
-  const result = await updateSessionEndTime(sessionId, endTime);
-  if (result) {
-    const result = await getSessionStartTime(sessionId);
+  const result = await getSessionStartTime(sessionId);
 
-    if (result) {
-      const timeElapsedInMs = endTime - result.start_time;
-      const message = result.count
-        ? "Timer has been stopped"
-        : "Timer has already been stopped";
-      return res.json({ message: message, time: timeElapsedInMs });
-    } else {
-      return res
-        .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
-        .json({ message: "Failed to get elapsed time" });
+  if (result) {
+    const timeElapsedInMs = endTime - result.start_time;
+    const message = result.count
+      ? "Timer has been stopped"
+      : "Timer has already been stopped";
+
+    try {
+      deleteSession(sessionId);
+    } catch (error) {
+      console.error(error);
     }
+
+    return res.json({ message: message, time: timeElapsedInMs });
   } else {
     return res
       .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
-      .json({ message: "Failed to stop timer" });
+      .json({ message: "Failed to get elapsed time" });
   }
 };
 
