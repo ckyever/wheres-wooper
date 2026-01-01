@@ -21,7 +21,17 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
         const newRemainingTargets = remainingTargets - 1;
         if (newRemainingTargets === 0) {
           const stopTimerUrl = `${SERVER_URL}/session/${sessionId}/stop`;
-          fetch(stopTimerUrl);
+          fetch(stopTimerUrl)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to stop timer");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(`Congrats you finished in ${data.time}ms`);
+            })
+            .catch((error) => console.error(error));
         }
         setRemainingTargets(newRemainingTargets);
 

@@ -64,9 +64,28 @@ const deleteSession = async (id) => {
   }
 };
 
+const getSessionStartTime = async (id) => {
+  try {
+    const result = await prisma.session.findUnique({
+      where: {
+        id: Number(id),
+      },
+      select: {
+        start_time: true,
+      },
+    });
+
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   insertSession,
   updateSessionStartTime,
   updateSessionEndTime,
   deleteSession,
+  getSessionStartTime,
 };
