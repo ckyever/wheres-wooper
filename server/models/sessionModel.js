@@ -1,8 +1,12 @@
 import { prisma } from "../lib/prisma";
 
-const insertSession = async () => {
+const insertSession = async ({ targetIds }) => {
   try {
-    const session = await prisma.session.insert();
+    const session = await prisma.session.insert({
+      data: {
+        target_ids: targetIds,
+      },
+    });
     return session;
   } catch (error) {
     console.error(error);
