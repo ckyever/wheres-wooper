@@ -86,14 +86,19 @@ const getPokemonList = async (req, res) => {
     targetIdString += pokemonList[randomIndex].id;
   }
 
+  let session;
   try {
-    await insertSession(targetIdString);
+    session = await insertSession(targetIdString);
   } catch (error) {
     console.error(error);
     throw new Error("Failed to create a new session");
   }
 
-  return res.json({ targets: targets, pokemonList: pokemonList });
+  return res.json({
+    sessionId: session.id,
+    targets: targets,
+    pokemonList: pokemonList,
+  });
 };
 
 export { getPokemonList };
