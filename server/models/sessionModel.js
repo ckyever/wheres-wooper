@@ -10,6 +10,23 @@ const insertSession = async () => {
   }
 };
 
+const updateSessionStartTime = async (id, startDateTime) => {
+  try {
+    const session = await prisma.session.update({
+      where: {
+        id: id,
+      },
+      data: {
+        start_time: startDateTime,
+      },
+    });
+    return session;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const updateSessionEndTime = async (id, endDateTime) => {
   try {
     const session = await prisma.session.update({
@@ -41,4 +58,9 @@ const deleteSession = async (id) => {
   }
 };
 
-export { insertSession, updateSessionEndTime, deleteSession };
+export {
+  insertSession,
+  updateSessionStartTime,
+  updateSessionEndTime,
+  deleteSession,
+};
