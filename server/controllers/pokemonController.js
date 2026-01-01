@@ -1,6 +1,8 @@
 import { hash } from "bcryptjs";
 import crypto from "crypto";
 
+import { insertSession } from "../models/sessionModel.js";
+
 const MAX_POKEDEX_NUMBER = 1025;
 const NUMBER_OF_TARGET_POKEMON = 3;
 const SALT_ROUNDS = 4; // Use minimum rounds since speed is the priority
@@ -67,9 +69,13 @@ const getPokemonList = async (req, res) => {
     })
   );
 
+  // This will be used to validate user actually completed the game
+  let targetIdString = "";
+
   // Always include Wooper as the first target
   const targets = [];
   await addPokemonToTarget(pokemonList[wooperIndex], targets);
+  targetIdString += pokemonList[wooperIndex].id;
 
   const bucketRange = Math.floor(length / NUMBER_OF_TARGET_POKEMON - 1);
   for (let i = 0; i < NUMBER_OF_TARGET_POKEMON - 1; i++) {
@@ -77,6 +83,14 @@ const getPokemonList = async (req, res) => {
     const endNumber = (i + 1) * bucketRange;
     const randomIndex = getRandomNumberInRange(startNumber, endNumber);
     await addPokemonToTarget(pokemonList[randomIndex], targets);
+    targetIdString += pokemonList[randomIndex].id;
+  }
+
+  try {
+    await insertSession(targetIdString);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to create a new session");
   }
 
   return res.json({ targets: targets, pokemonList: pokemonList });

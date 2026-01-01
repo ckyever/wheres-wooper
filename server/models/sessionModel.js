@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 
-const insertSession = async ({ targetIds }) => {
+const insertSession = async (targetIds) => {
   try {
-    const session = await prisma.session.insert({
+    const session = await prisma.session.create({
       data: {
         target_ids: targetIds,
       },
