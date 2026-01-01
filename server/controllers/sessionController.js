@@ -1,5 +1,6 @@
 import { constants } from "http2";
 
+import { isValidHighscore } from "./highscoreController.js";
 import {
   updateSessionStartTime,
   getSessionStartTime,
@@ -40,7 +41,11 @@ const stopTimer = async (req, res) => {
       console.error(error);
     }
 
-    return res.json({ message: message, time: timeElapsedInMs });
+    return res.json({
+      message: message,
+      time: timeElapsedInMs,
+      isValidHighscore: await isValidHighscore(timeElapsedInMs),
+    });
   } else {
     return res
       .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)

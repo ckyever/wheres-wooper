@@ -30,6 +30,9 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
             })
             .then((data) => {
               console.log(`Congrats you finished in ${data.time}ms`);
+              if (data.isValidHighscore) {
+                console.log("This is a new highscore");
+              }
             })
             .catch((error) => console.error(error));
         }
