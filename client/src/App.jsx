@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { usePokemonList } from "./data.jsx";
+import { usePokemonList } from "./data.js";
 
 import Game from "./components/Game.jsx";
 import StartScreen from "./components/StartScreen.jsx";

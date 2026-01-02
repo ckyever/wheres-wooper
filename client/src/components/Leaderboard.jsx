@@ -1,6 +1,6 @@
 import { formatDuration, intervalToDuration } from "date-fns";
 
-import { useHighscores } from "../data.jsx";
+import { useHighscores } from "../data.js";
 
 function Leaderboard() {
   const { isLoading, highscores } = useHighscores();
