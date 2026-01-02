@@ -2,12 +2,32 @@ import { useState } from "react";
 
 import styles from "../styles/EndScreen.module.css";
 
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
 function EndScreen({ show, time, highscoreId }) {
   const [username, setUsername] = useState("");
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // CKYTODO: Update highscoreId with username
+    try {
+      const response = await fetch(
+        `${SERVER_URL}/highscore/${highscoreId}/username`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username }),
+        }
+      );
+
+      if (response.ok) {
+        setShowLeaderboard(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const dialog = document.getElementById("end-screen-dialog");
@@ -23,19 +43,23 @@ function EndScreen({ show, time, highscoreId }) {
         {highscoreId && (
           <div>
             <p>You set a new highscore!</p>
-            <form
-              className={styles["highscore-form"]}
-              onSubmit={(event) => handleSubmit(event)}
-            >
-              <input
-                className={styles.username}
-                placeholder="Enter a username"
-                aria-label="username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-              />
-              <button type="submit">Submit</button>
-            </form>
+            {showLeaderboard ? (
+              <div>Leaderboard</div>
+            ) : (
+              <form
+                className={styles["highscore-form"]}
+                onSubmit={(event) => handleSubmit(event)}
+              >
+                <input
+                  className={styles.username}
+                  placeholder="Enter a username"
+                  aria-label="username"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+                <button type="submit">Submit</button>
+              </form>
+            )}
           </div>
         )}
 
