@@ -1,5 +1,3 @@
-import { formatDuration, intervalToDuration } from "date-fns";
-
 import { useHighscores } from "../data.js";
 import { convertMillisecondsToDurationString } from "../utils.js";
 
