@@ -1,4 +1,5 @@
 import Heading from "./Heading.jsx";
+import Leaderboard from "./Leaderboard.jsx";
 
 import styles from "../styles/StartScreen.module.css";
 
@@ -30,6 +31,7 @@ function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
           ) : (
             <button onClick={startGame}>Start</button>
           )}
+          <Leaderboard />
         </div>
       </dialog>
     </>
