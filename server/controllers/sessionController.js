@@ -1,6 +1,7 @@
 import { constants } from "http2";
 
 import { isValidHighscore } from "./highscoreController.js";
+import { insertHighscore } from "../models/highscoreModel.js";
 import {
   updateSessionStartTime,
   getSessionStartTime,
@@ -41,10 +42,21 @@ const stopTimer = async (req, res) => {
       console.error(error);
     }
 
+    const isNewHighscore = await isValidHighscore(timeElapsedInMs);
+    let newHighscore;
+    if (isNewHighscore) {
+      try {
+        newHighscore = await insertHighscore(timeElapsedInMs);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     return res.json({
       message: message,
       time: timeElapsedInMs,
-      isValidHighscore: await isValidHighscore(timeElapsedInMs),
+      isValidHighscore: isNewHighscore,
+      highscoreId: newHighscore.id,
     });
   } else {
     return res

@@ -1,11 +1,10 @@
 import { prisma } from "../lib/prisma.js";
 
-const insertHighscore = async (username, time) => {
+const insertHighscore = async (time) => {
   try {
     const highscore = await prisma.highscore.create({
       data: {
-        username: username,
-        time: time,
+        time: Number(time),
       },
     });
     return highscore;
