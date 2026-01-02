@@ -56,9 +56,28 @@ const deleteHighscore = async (id) => {
   }
 };
 
+const updateEmptyHighscoreUsername = async (id, username) => {
+  try {
+    const result = await prisma.highscore.update({
+      where: {
+        id: id,
+        username: null,
+      },
+      data: {
+        username: username,
+      },
+    });
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   insertHighscore,
   countHighscore,
   getSlowestHighscore,
   deleteHighscore,
+  updateEmptyHighscoreUsername,
 };

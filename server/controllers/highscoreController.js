@@ -1,8 +1,10 @@
+import { body, validationResult, matchedData } from "express-validator";
+import { constants } from "http2";
+
 import {
-  insertHighscore,
   countHighscore,
   getSlowestHighscore,
-  deleteHighscore,
+  updateEmptyHighscoreUsername,
 } from "../models/highscoreModel.js";
 
 const HIGHSCORE_LIMIT = 20;
@@ -21,4 +23,36 @@ const isValidHighscore = async (time) => {
   return false;
 };
 
-export { isValidHighscore };
+const validateUsername = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("Username can't be empty")
+    .isLength({ max: 50 })
+    .withMessage("Username can't be more than 50 characters"),
+];
+
+const setHighscoreUsername = [
+  validateUsername,
+  async (req, res) => {
+    const { highscoreId } = req.params;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(constants.HTTP_STATUS_BAD_REQUEST)
+        .json({ errors: errors.array() });
+    }
+    const { username } = matchedData(req);
+
+    const result = updateEmptyHighscoreUsername(highscoreId, username);
+    if (result) {
+      return res.json({ message: "Highscore username has been set" });
+    } else {
+      return res
+        .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
+        .json({ message: "Failed to set highscore username" });
+    }
+  },
+];
+
+export { isValidHighscore, setHighscoreUsername };
