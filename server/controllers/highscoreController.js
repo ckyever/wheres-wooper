@@ -6,6 +6,7 @@ import {
   getSlowestHighscore,
   updateEmptyHighscoreUsername,
   getHighscores,
+  deleteHighscore,
 } from "../models/highscoreModel.js";
 
 const HIGHSCORE_LIMIT = 10;
@@ -17,6 +18,7 @@ const isValidHighscore = async (time) => {
   } else {
     const slowestHighscore = await getSlowestHighscore();
     if (time < slowestHighscore.time) {
+      await deleteHighscore(slowestHighscore.id);
       return true;
     }
   }
