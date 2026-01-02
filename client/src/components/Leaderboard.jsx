@@ -1,3 +1,5 @@
+import { formatDuration, intervalToDuration } from "date-fns";
+
 import { useHighscores } from "../data.jsx";
 
 function Leaderboard() {
@@ -16,13 +18,20 @@ function Leaderboard() {
             </tr>
           </thead>
           <tbody>
-            {highscores.map((score, index) => (
-              <tr>
-                <td>{index + 1}.</td>
-                <td>{score.username}</td>
-                <td>{score.time}</td>
-              </tr>
-            ))}
+            {highscores.map((score, index) => {
+              const duration = intervalToDuration({
+                start: 0,
+                end: Number(score.time),
+              });
+              const durationString = formatDuration(duration);
+              return (
+                <tr key={score.id}>
+                  <td>{index + 1}.</td>
+                  <td>{score.username}</td>
+                  <td>{durationString}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       )}
