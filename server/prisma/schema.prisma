@@ -23,5 +23,5 @@ model session {
 model highscore {
   id Int @id @default(autoincrement())
   username String @default("anonymous")
-  time DateTime
+  time BigInt
 }
