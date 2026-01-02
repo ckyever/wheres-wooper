@@ -1,6 +1,7 @@
 import { formatDuration, intervalToDuration } from "date-fns";
 
 import { useHighscores } from "../data.js";
+import { convertMillisecondsToDurationString } from "../utils.js";
 
 function Leaderboard() {
   const { isLoading, highscores } = useHighscores();
@@ -19,16 +20,13 @@ function Leaderboard() {
           </thead>
           <tbody>
             {highscores.map((score, index) => {
-              const duration = intervalToDuration({
-                start: 0,
-                end: Number(score.time),
-              });
-              const durationString = formatDuration(duration);
               return (
                 <tr key={score.id}>
                   <td>{index + 1}.</td>
                   <td>{score.username}</td>
-                  <td>{durationString}</td>
+                  <td>
+                    {convertMillisecondsToDurationString(Number(score.time))}
+                  </td>
                 </tr>
               );
             })}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Leaderboard from "./Leaderboard.jsx";
+import { convertMillisecondsToDurationString } from "../utils.js";
 
 import styles from "../styles/EndScreen.module.css";
 
@@ -40,7 +41,10 @@ function EndScreen({ show, time, highscoreId }) {
   return (
     <dialog id="end-screen-dialog" className={styles["end-screen"]}>
       <div className={styles.container}>
-        <p>Congrats you finished the game in {time}ms</p>
+        <p>
+          Congrats you finished the game in{" "}
+          {convertMillisecondsToDurationString(time)}
+        </p>
 
         {highscoreId ? (
           <div>
