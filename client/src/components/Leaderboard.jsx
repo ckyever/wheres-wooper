@@ -19,17 +19,23 @@ function Leaderboard() {
             </tr>
           </thead>
           <tbody>
-            {highscores.map((score, index) => {
-              return (
-                <tr key={score.id}>
-                  <td>{index + 1}.</td>
-                  <td>{score.username}</td>
-                  <td>
-                    {convertMillisecondsToDurationString(Number(score.time))}
-                  </td>
-                </tr>
-              );
-            })}
+            {highscores.length > 0 ? (
+              highscores.map((score, index) => {
+                return (
+                  <tr key={score.id}>
+                    <td>{index + 1}.</td>
+                    <td>{score.username}</td>
+                    <td>
+                      {convertMillisecondsToDurationString(Number(score.time))}
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colspan="3">No scores yet</td>
+              </tr>
+            )}
           </tbody>
         </table>
       )}
