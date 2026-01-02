@@ -5,6 +5,7 @@ import {
   countHighscore,
   getSlowestHighscore,
   updateEmptyHighscoreUsername,
+  getHighscores,
 } from "../models/highscoreModel.js";
 
 const HIGHSCORE_LIMIT = 20;
@@ -55,4 +56,21 @@ const setHighscoreUsername = [
   },
 ];
 
-export { isValidHighscore, setHighscoreUsername };
+const getAllHighscores = async (req, res) => {
+  try {
+    const highscores = await getHighscores();
+    const jsonHighscores = highscores.map((score) => {
+      const newScore = score;
+      newScore.time = String(newScore.time);
+      return newScore;
+    });
+    return res.json({ highscores: jsonHighscores });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({ message: "Unable to get highscores" });
+  }
+};
+
+export { isValidHighscore, setHighscoreUsername, getAllHighscores };

@@ -74,10 +74,28 @@ const updateEmptyHighscoreUsername = async (id, username) => {
   }
 };
 
+const getHighscores = async () => {
+  try {
+    const highscores = await prisma.highscore.findMany({
+      orderBy: [
+        {
+          time: "asc",
+        },
+        { id: "desc" },
+      ],
+    });
+    return highscores;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export {
   insertHighscore,
   countHighscore,
   getSlowestHighscore,
   deleteHighscore,
   updateEmptyHighscoreUsername,
+  getHighscores,
 };
