@@ -60,7 +60,7 @@ const updateEmptyHighscoreUsername = async (id, username) => {
   try {
     const result = await prisma.highscore.update({
       where: {
-        id: id,
+        id: Number(id),
         username: null,
       },
       data: {
