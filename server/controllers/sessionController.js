@@ -56,7 +56,7 @@ const stopTimer = async (req, res) => {
       message: message,
       time: timeElapsedInMs,
       isValidHighscore: isNewHighscore,
-      highscoreId: newHighscore.id ?? null,
+      highscoreId: newHighscore ? newHighscore.id : null,
     });
   } else {
     return res
