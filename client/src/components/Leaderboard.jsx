@@ -1,6 +1,8 @@
 import { useHighscores } from "../data.js";
 import { convertMillisecondsToDurationString } from "../utils.js";
 
+import styles from "../styles/Leaderboard.module.css";
+
 function Leaderboard() {
   const { isLoading, highscores } = useHighscores();
   return (
@@ -8,7 +10,7 @@ function Leaderboard() {
       {isLoading ? (
         <div>Loading scores...</div>
       ) : (
-        <table>
+        <table className={styles.leaderboard}>
           <thead>
             <tr>
               <th></th>

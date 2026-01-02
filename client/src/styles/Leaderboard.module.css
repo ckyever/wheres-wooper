@@ -1,0 +1,5 @@
+.leaderboard th,
+.leaderboard td {
+  text-align: right;
+  padding: 0 8px;
+}
