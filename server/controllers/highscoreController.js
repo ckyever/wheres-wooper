@@ -47,7 +47,7 @@ const setHighscoreUsername = [
     }
     const { username } = matchedData(req);
 
-    const result = updateEmptyHighscoreUsername(highscoreId, username);
+    const result = await updateEmptyHighscoreUsername(highscoreId, username);
     if (result) {
       return res.json({ message: "Highscore username has been set" });
     } else {
