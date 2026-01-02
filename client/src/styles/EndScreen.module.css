@@ -1,0 +1,19 @@
+.end-screen {
+  margin: auto;
+  font-size: 1.4rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.highscore-form {
+  display: flex;
+  gap: 4px;
+}
+
+.username {
+  flex: 1;
+}

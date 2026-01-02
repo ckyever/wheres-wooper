@@ -1,6 +1,7 @@
 import { compare } from "bcryptjs";
 import { useState } from "react";
 
+import EndScreen from "./EndScreen.jsx";
 import Heading from "./Heading.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
@@ -11,6 +12,9 @@ import styles from "../styles/Game.module.css";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 function Game({ sessionId, targetPokemon, pokemonList }) {
+  const [showEndScreen, setShowEndScreen] = useState(false);
+  const [completionTime, setCompletionTime] = useState(null);
+  const [highscoreId, setHighscoreId] = useState(null);
   const [remainingTargets, setRemainingTargets] = useState(
     targetPokemon.length
   );
@@ -29,12 +33,13 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
               return response.json();
             })
             .then((data) => {
-              console.log(`Congrats you finished in ${data.time}ms`);
+              setCompletionTime(data.time);
               if (data.isValidHighscore) {
-                console.log(`This is a new highscore id - ${data.highscoreId}`);
+                setHighscoreId(data.highscoreId);
               }
             })
             .catch((error) => console.error(error));
+          setShowEndScreen(true);
         }
         setRemainingTargets(newRemainingTargets);
 
@@ -56,6 +61,11 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
           handleClick={handlePokemonClick}
         />
       </div>
+      <EndScreen
+        show={showEndScreen}
+        time={completionTime}
+        highscoreId={highscoreId}
+      />
     </div>
   );
 }
