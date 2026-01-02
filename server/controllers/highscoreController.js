@@ -8,7 +8,7 @@ import {
   getHighscores,
 } from "../models/highscoreModel.js";
 
-const HIGHSCORE_LIMIT = 20;
+const HIGHSCORE_LIMIT = 10;
 
 const isValidHighscore = async (time) => {
   const highscoreCount = await countHighscore();
@@ -16,7 +16,7 @@ const isValidHighscore = async (time) => {
     return true;
   } else {
     const slowestHighscore = await getSlowestHighscore();
-    if (time < slowestHighscore) {
+    if (time < slowestHighscore.time) {
       return true;
     }
   }
