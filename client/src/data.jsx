@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const POKEMON_LIST_LENGTH = 200;
 
 export const usePokemonList = () => {
@@ -9,9 +10,7 @@ export const usePokemonList = () => {
   const [targetPokemon, setTargetPokemon] = useState(null);
 
   useEffect(() => {
-    const url = `${
-      import.meta.env.VITE_SERVER_URL
-    }/pokemon?length=${POKEMON_LIST_LENGTH}`;
+    const url = `${SERVER_URL}/pokemon?length=${POKEMON_LIST_LENGTH}`;
     fetch(url)
       .then((response) => {
         if (response.status >= 400) {
@@ -41,4 +40,29 @@ export const usePokemonList = () => {
   }, []);
 
   return { isLoading, sessionId, targetPokemon, pokemonList };
+};
+
+export const useHighscores = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [highscores, setHighscores] = useState(null);
+
+  useEffect(() => {
+    fetch(`${SERVER_URL}/highscore`)
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Server error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setHighscores(data.highscores);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Something went wrong while fetching highscores");
+      });
+  }, []);
+
+  return { isLoading, highscores };
 };

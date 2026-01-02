@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Leaderboard from "./Leaderboard.jsx";
+
 import styles from "../styles/EndScreen.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -44,7 +46,7 @@ function EndScreen({ show, time, highscoreId }) {
           <div>
             <p>You set a new highscore!</p>
             {showLeaderboard ? (
-              <div>Leaderboard</div>
+              <Leaderboard />
             ) : (
               <form
                 className={styles["highscore-form"]}
