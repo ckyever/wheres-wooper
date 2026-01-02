@@ -42,7 +42,7 @@ function EndScreen({ show, time, highscoreId }) {
       <div className={styles.container}>
         <p>Congrats you finished the game in {time}ms</p>
 
-        {highscoreId && (
+        {highscoreId ? (
           <div>
             <p>You set a new highscore!</p>
             {showLeaderboard ? (
@@ -63,6 +63,8 @@ function EndScreen({ show, time, highscoreId }) {
               </form>
             )}
           </div>
+        ) : (
+          <Leaderboard />
         )}
 
         <button type="button">New Game</button>
