@@ -14,3 +14,9 @@
   align-items: center;
   margin-bottom: 40px;
 }
+
+.actions {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}

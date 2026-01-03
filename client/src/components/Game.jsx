@@ -6,8 +6,9 @@ import Heading from "./Heading.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
 
-import searchAreaStyles from "../styles/SearchArea.module.css";
+import buttonStyles from "../styles/Button.module.css";
 import styles from "../styles/Game.module.css";
+import searchAreaStyles from "../styles/SearchArea.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -54,6 +55,15 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
   return (
     <div className={styles.game}>
       <Heading />
+      <div className={styles.actions}>
+        <button
+          type="button"
+          className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
+          onClick={() => window.location.reload()}
+        >
+          Restart
+        </button>
+      </div>
       <div className={styles.container}>
         <Targets targetPokemon={targetPokemon} />
         <SearchArea
