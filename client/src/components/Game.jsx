@@ -13,7 +13,7 @@ import searchAreaStyles from "../styles/SearchArea.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
-function Game({ sessionId, targetPokemon, pokemonList }) {
+function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
   const [showEndScreen, setShowEndScreen] = useState(false);
   const [completionTime, setCompletionTime] = useState(null);
   const [highscoreId, setHighscoreId] = useState(null);
@@ -56,7 +56,9 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
   return (
     <div className={styles.game}>
       <Heading />
-      <div className={styles.timer}>{!showEndScreen && <Timer />}</div>
+      <div className={styles.timer}>
+        {isGameInProgress && !showEndScreen && <Timer />}
+      </div>
       <div className={styles.actions}>
         <button
           type="button"

@@ -18,6 +18,7 @@ function App() {
       />
       {!isLoading && (
         <Game
+          isGameInProgress={isGameInProgress}
           sessionId={sessionId}
           targetPokemon={targetPokemon}
           pokemonList={pokemonList}
