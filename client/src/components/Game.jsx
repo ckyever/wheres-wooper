@@ -58,27 +58,32 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
 
   return (
     <div className={styles.game}>
-      <div className={styles.actions}>
-        {!showEndScreen && (
-          <button
-            type="button"
-            className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
-            onClick={() => window.location.reload()}
-          >
-            Restart
-          </button>
-        )}
-      </div>
-      <Heading />
-      <div className={styles.timer}>
-        {isGameInProgress && !showEndScreen && <Timer />}
-      </div>
-      <div className={styles.container}>
+      <div className={styles.sky}>
+        <div className={styles.actions}>
+          {!showEndScreen && (
+            <button
+              type="button"
+              className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
+              onClick={() => window.location.reload()}
+            >
+              Restart
+            </button>
+          )}
+        </div>
+        <Heading />
+        <div className={styles.timer}>
+          {isGameInProgress && !showEndScreen && <Timer />}
+        </div>
         <Targets targetPokemon={targetPokemon} />
-        <SearchArea
-          pokemonList={pokemonList}
-          handleClick={handlePokemonClick}
-        />
+      </div>
+      <div className={styles.ocean}></div>
+      <div className={styles.grass}>
+        <div className={styles.container}>
+          <SearchArea
+            pokemonList={pokemonList}
+            handleClick={handlePokemonClick}
+          />
+        </div>
       </div>
       <EndScreen
         show={showEndScreen}

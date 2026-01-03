@@ -87,7 +87,6 @@ h6 {
 }
 
 body {
-  background: url("../assets/background.png") top/cover no-repeat;
   display: flex;
   flex-direction: column;
   width: 100vw;

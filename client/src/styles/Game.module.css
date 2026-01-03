@@ -1,9 +1,30 @@
+:root {
+  --sky-colour: #77c6f5;
+  --ocean-colour: #6891ee;
+  --grass-colour: #7daa70;
+}
+
 .game {
   display: flex;
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
+  background-color: var(--sky-colour);
+}
+
+.sky {
+  background: url("../assets/sky-background.png") bottom/100% auto no-repeat;
+  flex: 1;
+}
+
+.ocean {
+  background-color: var(--ocean-colour);
+}
+
+.grass {
+  background: url("../assets/grass-background.png") top/100% auto no-repeat;
+  background-color: var(--grass-colour);
 }
 
 .container {
@@ -12,7 +33,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
+  padding: 8px;
 }
 
 .actions {
