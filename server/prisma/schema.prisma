@@ -22,7 +22,7 @@ model session {
 
 model highscore {
   id Int @id @default(autoincrement())
-  username String?
+  username String? @db.Char(20)
   time BigInt
   date DateTime @default(now())
 }

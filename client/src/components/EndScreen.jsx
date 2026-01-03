@@ -63,6 +63,7 @@ function EndScreen({ show, time, highscoreId }) {
                   className={styles.username}
                   placeholder="Enter a username"
                   aria-label="username"
+                  maxLength={20}
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
                 />

@@ -31,7 +31,7 @@ const validateUsername = [
     .trim()
     .notEmpty()
     .withMessage("Username can't be empty")
-    .isLength({ max: 50 })
+    .isLength({ max: 20 })
     .withMessage("Username can't be more than 50 characters"),
 ];
 
