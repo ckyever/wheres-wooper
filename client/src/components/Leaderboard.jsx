@@ -9,7 +9,7 @@ function Leaderboard({ currentHighscore }) {
   const { isLoading, highscores } = useHighscores();
   return (
     <div>
-      <h2 class={styles.heading}>Leaderboard</h2>
+      <h2 className={styles.heading}>Leaderboard</h2>
       <div className={styles.container}>
         {isLoading ? (
           <div>Loading scores...</div>
@@ -18,9 +18,9 @@ function Leaderboard({ currentHighscore }) {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Username</th>
-                <th>Time</th>
-                <th>Date</th>
+                <th>USERNAME</th>
+                <th>TIME</th>
+                <th>DATE</th>
               </tr>
             </thead>
             <tbody>
@@ -36,7 +36,11 @@ function Leaderboard({ currentHighscore }) {
                       }
                     >
                       <td>{index + 1}.</td>
-                      <td>{score.username}</td>
+                      <td>
+                        <span className={styles.username}>
+                          {score.username}
+                        </span>
+                      </td>
                       <td>
                         {convertMillisecondsToDurationString(
                           Number(score.time)

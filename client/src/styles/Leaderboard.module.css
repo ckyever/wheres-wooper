@@ -6,28 +6,44 @@
 
 .container {
   width: min-content;
-  min-height: 380px;
-  border: 1px solid black;
+  min-height: 330px;
+  border: var(--main-border);
+  border-radius: var(--main-border-radius);
 }
 
 .leaderboard {
   width: 100%;
   font-size: 1.4rem;
   border-collapse: collapse;
+  font-size: 1.2rem;
 }
 
 .leaderboard th,
 .leaderboard td {
-  text-align: right;
+  text-align: center;
   padding: 0 16px;
-  border-bottom: 1px solid black;
+  border-bottom: var(--main-border);
   white-space: nowrap;
+}
+
+.leaderboard th {
+  background-color: var(--secondary-accent-colour);
+  color: white;
+  font-weight: 600;
+}
+
+.leaderboard td {
+  font-weight: 500;
 }
 
 .leaderboard tr:last-child td {
   border-bottom: none;
 }
 
+.username {
+  font-size: 1.5rem;
+}
+
 .current-score {
-  color: red;
+  color: var(--secondary-accent-colour);
 }

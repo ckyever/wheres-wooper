@@ -80,6 +80,10 @@ h6 {
 
 :root {
   font-family: "Gamja Flower", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --main-accent-colour: #71b9f8;
+  --secondary-accent-colour: #d05ad0;
+  --main-border: 1px solid #565656;
+  --main-border-radius: 4px;
 }
 
 body {
