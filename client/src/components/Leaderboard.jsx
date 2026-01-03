@@ -8,50 +8,55 @@ import styles from "../styles/Leaderboard.module.css";
 function Leaderboard({ currentHighscore }) {
   const { isLoading, highscores } = useHighscores();
   return (
-    <div className={styles.container}>
-      {isLoading ? (
-        <div>Loading scores...</div>
-      ) : (
-        <table className={styles.leaderboard}>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Username</th>
-              <th>Time</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {highscores.length > 0 ? (
-              highscores.map((score, index) => {
-                return (
-                  <tr
-                    key={score.id}
-                    className={
-                      score.id == currentHighscore
-                        ? styles["current-score"]
-                        : ""
-                    }
-                  >
-                    <td>{index + 1}.</td>
-                    <td>{score.username}</td>
-                    <td>
-                      {convertMillisecondsToDurationString(Number(score.time))}
-                    </td>
-                    <td>
-                      {formatDistanceToNow(score.date, { addSuffix: true })}
-                    </td>
-                  </tr>
-                );
-              })
-            ) : (
+    <div>
+      <h2 class={styles.heading}>Leaderboard</h2>
+      <div className={styles.container}>
+        {isLoading ? (
+          <div>Loading scores...</div>
+        ) : (
+          <table className={styles.leaderboard}>
+            <thead>
               <tr>
-                <td colspan="1000">No scores yet</td>
+                <th>#</th>
+                <th>Username</th>
+                <th>Time</th>
+                <th>Date</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody>
+              {highscores.length > 0 ? (
+                highscores.map((score, index) => {
+                  return (
+                    <tr
+                      key={score.id}
+                      className={
+                        score.id == currentHighscore
+                          ? styles["current-score"]
+                          : ""
+                      }
+                    >
+                      <td>{index + 1}.</td>
+                      <td>{score.username}</td>
+                      <td>
+                        {convertMillisecondsToDurationString(
+                          Number(score.time)
+                        )}
+                      </td>
+                      <td>
+                        {formatDistanceToNow(score.date, { addSuffix: true })}
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colspan="1000">No scores yet</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,11 @@
+.heading {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2.8rem;
+}
+
 .container {
   width: min-content;
-  margin: 20px;
   min-height: 380px;
   border: 1px solid black;
 }
