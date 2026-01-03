@@ -29,7 +29,7 @@ function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
               Find them fast to earn a spot on the leaderboard!
             </p>
             {isGameLoading ? (
-              <span>Game is loading...</span>
+              <span className={styles.loading}>Game is loading...</span>
             ) : (
               <button
                 className={buttonStyles["dialog-button"]}
