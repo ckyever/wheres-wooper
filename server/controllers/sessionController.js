@@ -31,8 +31,6 @@ const stopTimer = async (req, res) => {
   const session = await getSessionById(sessionId);
 
   if (session) {
-    console.log(session);
-    console.log(targetIds);
     if (!areTargetIdsMatching(session.target_ids, targetIds)) {
       return res
         .status(constants.HTTP_STATUS_UNAUTHORIZED)
@@ -74,7 +72,6 @@ const stopTimer = async (req, res) => {
 };
 
 const sortString = (string) => {
-  console.log(string);
   return string.split("").sort().join("");
 };
 
