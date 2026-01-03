@@ -59,13 +59,15 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
   return (
     <div className={styles.game}>
       <div className={styles.actions}>
-        <button
-          type="button"
-          className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
-          onClick={() => window.location.reload()}
-        >
-          Restart
-        </button>
+        {!showEndScreen && (
+          <button
+            type="button"
+            className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
+            onClick={() => window.location.reload()}
+          >
+            Restart
+          </button>
+        )}
       </div>
       <Heading />
       <div className={styles.timer}>
