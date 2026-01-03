@@ -20,13 +20,16 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
   const [remainingTargets, setRemainingTargets] = useState(
     targetPokemon.length
   );
+  const [targetIds, setTargetIds] = useState("");
 
   const handlePokemonClick = async (event) => {
     for (let pokemon of targetPokemon) {
       if (await compare(event.target.id, pokemon.hash)) {
+        const newTargetIds = `${targetIds}${event.target.id}`;
+        setTargetIds(newTargetIds);
         const newRemainingTargets = remainingTargets - 1;
         if (newRemainingTargets === 0) {
-          const stopTimerUrl = `${SERVER_URL}/session/${sessionId}/stop`;
+          const stopTimerUrl = `${SERVER_URL}/session/${sessionId}/stop/${newTargetIds}`;
           fetch(stopTimerUrl)
             .then((response) => {
               if (!response.ok) {
