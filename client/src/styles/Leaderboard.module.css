@@ -3,3 +3,7 @@
   text-align: right;
   padding: 0 8px;
 }
+
+.current-score {
+  color: red;
+}

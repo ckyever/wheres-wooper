@@ -50,7 +50,7 @@ function EndScreen({ show, time, highscoreId }) {
           <div>
             <p>You set a new highscore!</p>
             {showLeaderboard ? (
-              <Leaderboard />
+              <Leaderboard currentHighscore={highscoreId} />
             ) : (
               <form
                 className={styles["highscore-form"]}

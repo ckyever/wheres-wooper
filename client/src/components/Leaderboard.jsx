@@ -3,7 +3,7 @@ import { convertMillisecondsToDurationString } from "../utils.js";
 
 import styles from "../styles/Leaderboard.module.css";
 
-function Leaderboard() {
+function Leaderboard({ currentHighscore }) {
   const { isLoading, highscores } = useHighscores();
   return (
     <>
@@ -22,7 +22,14 @@ function Leaderboard() {
             {highscores.length > 0 ? (
               highscores.map((score, index) => {
                 return (
-                  <tr key={score.id}>
+                  <tr
+                    key={score.id}
+                    className={
+                      score.id == currentHighscore
+                        ? styles["current-score"]
+                        : ""
+                    }
+                  >
                     <td>{index + 1}.</td>
                     <td>{score.username}</td>
                     <td>
