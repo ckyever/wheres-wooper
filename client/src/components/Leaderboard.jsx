@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns";
+
 import { useHighscores } from "../data.js";
 import { convertMillisecondsToDurationString } from "../utils.js";
 
@@ -16,6 +18,7 @@ function Leaderboard({ currentHighscore }) {
               <th></th>
               <th>Username</th>
               <th>Time</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -35,12 +38,15 @@ function Leaderboard({ currentHighscore }) {
                     <td>
                       {convertMillisecondsToDurationString(Number(score.time))}
                     </td>
+                    <td>
+                      {formatDistanceToNow(score.date, { addSuffix: true })}
+                    </td>
                   </tr>
                 );
               })
             ) : (
               <tr>
-                <td colspan="3">No scores yet</td>
+                <td colspan="1000">No scores yet</td>
               </tr>
             )}
           </tbody>
