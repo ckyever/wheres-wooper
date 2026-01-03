@@ -24,4 +24,5 @@ model highscore {
   id Int @id @default(autoincrement())
   username String?
   time BigInt
+  date DateTime @default(now())
 }
