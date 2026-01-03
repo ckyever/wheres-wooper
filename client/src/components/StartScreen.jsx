@@ -18,7 +18,6 @@ function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
     <>
       <dialog id="start-dialog" className={styles["start-dialog"]} open>
         <div className={styles.container}>
-          <div className="spacer"></div>
           <div className={styles["main-content"]}>
             <Heading />
             <p className={styles.instructions}>

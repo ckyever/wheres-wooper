@@ -71,7 +71,9 @@ function EndScreen({ show, time, highscoreId }) {
           <Leaderboard />
         )}
 
-        <button type="button">New Game</button>
+        <button type="button" onClick={() => window.location.reload()}>
+          New Game
+        </button>
       </div>
     </dialog>
   );
