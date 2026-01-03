@@ -22,7 +22,7 @@ function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
           <div className={styles["main-content"]}>
             <Heading />
             <p className={styles.instructions}>
-              This game is Where's Wally, but with Pokemon.
+              Where's Wally, but with randomly generated Pokemon.
               <br />
               Click on the Pokemon that match the 3 outlines.
               <br />
