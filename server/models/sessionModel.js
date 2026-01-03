@@ -46,14 +46,11 @@ const deleteSession = async (id) => {
   }
 };
 
-const getSessionStartTime = async (id) => {
+const getSessionById = async (id) => {
   try {
     const result = await prisma.session.findUnique({
       where: {
         id: Number(id),
-      },
-      select: {
-        start_time: true,
       },
     });
 
@@ -64,9 +61,4 @@ const getSessionStartTime = async (id) => {
   }
 };
 
-export {
-  insertSession,
-  updateSessionStartTime,
-  deleteSession,
-  getSessionStartTime,
-};
+export { insertSession, updateSessionStartTime, deleteSession, getSessionById };

@@ -4,7 +4,7 @@ import { isValidHighscore } from "./highscoreController.js";
 import { insertHighscore } from "../models/highscoreModel.js";
 import {
   updateSessionStartTime,
-  getSessionStartTime,
+  getSessionById,
   deleteSession,
 } from "../models/sessionModel.js";
 
@@ -25,14 +25,22 @@ const startTimer = async (req, res) => {
 };
 
 const stopTimer = async (req, res) => {
-  const { sessionId } = req.params;
+  const { sessionId, targetIds } = req.params;
 
   const endTime = new Date();
-  const result = await getSessionStartTime(sessionId);
+  const session = await getSessionById(sessionId);
 
-  if (result) {
-    const timeElapsedInMs = endTime - result.start_time;
-    const message = result.count
+  if (session) {
+    console.log(session);
+    console.log(targetIds);
+    if (!areTargetIdsMatching(session.target_ids, targetIds)) {
+      return res
+        .status(constants.HTTP_STATUS_UNAUTHORIZED)
+        .json({ message: "You are not authorised to stop this session timer" });
+    }
+
+    const timeElapsedInMs = endTime - session.start_time;
+    const message = session.count
       ? "Timer has been stopped"
       : "Timer has already been stopped";
 
@@ -61,8 +69,17 @@ const stopTimer = async (req, res) => {
   } else {
     return res
       .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
-      .json({ message: "Failed to get elapsed time" });
+      .json({ message: "Failed to find session" });
   }
+};
+
+const sortString = (string) => {
+  console.log(string);
+  return string.split("").sort().join("");
+};
+
+const areTargetIdsMatching = (sessionTargetIds, userTargetIds) => {
+  return sortString(sessionTargetIds) === sortString(userTargetIds);
 };
 
 export { startTimer, stopTimer };
