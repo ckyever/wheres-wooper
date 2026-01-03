@@ -55,10 +55,6 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
 
   return (
     <div className={styles.game}>
-      <Heading />
-      <div className={styles.timer}>
-        {isGameInProgress && !showEndScreen && <Timer />}
-      </div>
       <div className={styles.actions}>
         <button
           type="button"
@@ -67,6 +63,10 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
         >
           Restart
         </button>
+      </div>
+      <Heading />
+      <div className={styles.timer}>
+        {isGameInProgress && !showEndScreen && <Timer />}
       </div>
       <div className={styles.container}>
         <Targets targetPokemon={targetPokemon} />
