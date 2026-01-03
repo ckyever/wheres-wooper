@@ -1,6 +1,7 @@
 import Heading from "./Heading.jsx";
 import Leaderboard from "./Leaderboard.jsx";
 
+import buttonStyles from "../styles/DialogButton.module.css";
 import styles from "../styles/StartScreen.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -30,7 +31,12 @@ function StartScreen({ isGameLoading, sessionId, setIsGameInProgress }) {
             {isGameLoading ? (
               <span>Game is loading...</span>
             ) : (
-              <button onClick={startGame}>Start</button>
+              <button
+                className={buttonStyles["dialog-button"]}
+                onClick={startGame}
+              >
+                Start
+              </button>
             )}
           </div>
           <div className={styles["right-side"]}>

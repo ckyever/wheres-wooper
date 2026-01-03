@@ -3,6 +3,7 @@ import { useState } from "react";
 import Leaderboard from "./Leaderboard.jsx";
 import { convertMillisecondsToDurationString } from "../utils.js";
 
+import buttonStyles from "../styles/DialogButton.module.css";
 import styles from "../styles/EndScreen.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -63,7 +64,12 @@ function EndScreen({ show, time, highscoreId }) {
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button
+                  type="submit"
+                  className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
+                >
+                  Submit
+                </button>
               </form>
             )}
           </div>
@@ -71,7 +77,11 @@ function EndScreen({ show, time, highscoreId }) {
           <Leaderboard />
         )}
 
-        <button type="button" onClick={() => window.location.reload()}>
+        <button
+          type="button"
+          className={buttonStyles["dialog-button"]}
+          onClick={() => window.location.reload()}
+        >
           New Game
         </button>
       </div>

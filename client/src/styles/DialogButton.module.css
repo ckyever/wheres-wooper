@@ -1,0 +1,16 @@
+.dialog-button {
+  cursor: pointer;
+  background-color: var(--main-accent-colour);
+  color: white;
+  border: var(--main-border);
+  border-radius: var(--main-border-radius);
+}
+
+.dialog-button:hover,
+.dialog-button.secondary:hover {
+  background-color: black;
+}
+
+.dialog-button.secondary {
+  background-color: var(--secondary-accent-colour);
+}
