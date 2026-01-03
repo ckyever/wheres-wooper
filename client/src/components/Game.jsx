@@ -5,6 +5,7 @@ import EndScreen from "./EndScreen.jsx";
 import Heading from "./Heading.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
+import Timer from "./Timer.jsx";
 
 import buttonStyles from "../styles/Button.module.css";
 import styles from "../styles/Game.module.css";
@@ -55,6 +56,7 @@ function Game({ sessionId, targetPokemon, pokemonList }) {
   return (
     <div className={styles.game}>
       <Heading />
+      <div className={styles.timer}>{!showEndScreen && <Timer />}</div>
       <div className={styles.actions}>
         <button
           type="button"

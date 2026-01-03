@@ -17,4 +17,20 @@ const convertMillisecondsToDurationString = (ms) => {
   return durationString;
 };
 
-export { convertMillisecondsToDurationString };
+const convertSecondsToTimerString = (sec) => {
+  const milliseconds = sec.toString().at(-1);
+  const seconds = Math.floor(sec) % 60;
+  const minutes = Math.floor(sec / 60);
+
+  let timerString;
+  if (minutes > 0) {
+    timerString = `${String(seconds).padStart(2, "0")}.${milliseconds}`;
+    timerString = `${minutes}:${timerString}`;
+  } else {
+    timerString = `${seconds}.${milliseconds}`;
+  }
+
+  return timerString;
+};
+
+export { convertMillisecondsToDurationString, convertSecondsToTimerString };
