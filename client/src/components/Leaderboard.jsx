@@ -8,7 +8,7 @@ import styles from "../styles/Leaderboard.module.css";
 function Leaderboard({ currentHighscore }) {
   const { isLoading, highscores } = useHighscores();
   return (
-    <>
+    <div className={styles.container}>
       {isLoading ? (
         <div>Loading scores...</div>
       ) : (
@@ -52,7 +52,7 @@ function Leaderboard({ currentHighscore }) {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 }
 

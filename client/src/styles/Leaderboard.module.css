@@ -1,7 +1,26 @@
+.container {
+  width: min-content;
+  margin: 20px;
+  min-height: 380px;
+  border: 1px solid black;
+}
+
+.leaderboard {
+  width: 100%;
+  font-size: 1.4rem;
+  border-collapse: collapse;
+}
+
 .leaderboard th,
 .leaderboard td {
   text-align: right;
-  padding: 0 8px;
+  padding: 0 16px;
+  border-bottom: 1px solid black;
+  white-space: nowrap;
+}
+
+.leaderboard tr:last-child td {
+  border-bottom: none;
 }
 
 .current-score {
