@@ -1,7 +1,7 @@
 import Heading from "./Heading.jsx";
 import Leaderboard from "./Leaderboard.jsx";
 
-import buttonStyles from "../styles/DialogButton.module.css";
+import buttonStyles from "../styles/Button.module.css";
 import styles from "../styles/StartScreen.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;

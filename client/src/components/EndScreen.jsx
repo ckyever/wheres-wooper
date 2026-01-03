@@ -3,7 +3,7 @@ import { useState } from "react";
 import Leaderboard from "./Leaderboard.jsx";
 import { convertMillisecondsToDurationString } from "../utils.js";
 
-import buttonStyles from "../styles/DialogButton.module.css";
+import buttonStyles from "../styles/Button.module.css";
 import styles from "../styles/EndScreen.module.css";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
