@@ -44,7 +44,9 @@ function EndScreen({ show, time, highscoreId }) {
       <div className={styles.container}>
         <p>
           Congrats you finished the game in{" "}
-          {convertMillisecondsToDurationString(time)}
+          <span className={styles.time}>
+            {convertMillisecondsToDurationString(time)}
+          </span>
         </p>
 
         {highscoreId ? (
