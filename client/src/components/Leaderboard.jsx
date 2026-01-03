@@ -38,7 +38,7 @@ function Leaderboard({ currentHighscore }) {
                       <td>{index + 1}.</td>
                       <td>
                         <span className={styles.username}>
-                          {score.username}
+                          {score.username ?? "[anonymous]"}
                         </span>
                       </td>
                       <td>
