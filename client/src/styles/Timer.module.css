@@ -1,6 +1,7 @@
 .timer {
+  font-family: "Carlito", monospace;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #4fc66c;
   background-color: black;
   width: 200px;
