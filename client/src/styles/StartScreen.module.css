@@ -6,12 +6,18 @@
 
 .container {
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.main-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  font-size: 2rem;
 }
 
 .instructions {
