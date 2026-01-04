@@ -47,3 +47,22 @@
 .current-score {
   color: var(--secondary-accent-colour);
 }
+
+@media (width < 550px) {
+  .container {
+    min-height: 270px;
+  }
+
+  .leaderboard {
+    font-size: 1rem;
+  }
+
+  .leaderboard th,
+  .leaderboard td {
+    padding: 0 8px;
+  }
+
+  .username {
+    font-size: 1.1em;
+  }
+}
