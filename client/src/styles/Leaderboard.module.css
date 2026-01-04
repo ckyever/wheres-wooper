@@ -6,9 +6,13 @@
 
 .container {
   width: min-content;
-  min-height: 330px;
+  min-height: 400px;
+  min-width: 525px;
   border: var(--main-border);
   border-radius: var(--main-border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .leaderboard {
