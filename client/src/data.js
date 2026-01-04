@@ -42,12 +42,12 @@ export const usePokemonList = () => {
   return { isLoading, sessionId, targetPokemon, pokemonList };
 };
 
-export const useHighscores = () => {
+export const useHighscores = (newHighscoreId) => {
   const [isLoading, setIsLoading] = useState(true);
   const [highscores, setHighscores] = useState(null);
 
   useEffect(() => {
-    fetch(`${SERVER_URL}/highscore`)
+    fetch(`${SERVER_URL}/highscore?new_highscore_id=${newHighscoreId}`)
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server error");
@@ -62,7 +62,7 @@ export const useHighscores = () => {
         console.error(error);
         throw new Error("Something went wrong while fetching highscores");
       });
-  }, []);
+  }, [newHighscoreId]);
 
   return { isLoading, highscores };
 };

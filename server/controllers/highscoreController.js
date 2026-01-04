@@ -46,8 +46,6 @@ const getHighscores = async (req, res) => {
     let highscores = await getTopHighscores();
 
     if (new_highscore_id > 0) {
-      console.log(highscores);
-      console.log(new_highscore_id);
       const newScoreIsAHighscore = highscores.some(
         (score) => score.id == new_highscore_id
       );
