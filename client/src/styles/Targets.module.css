@@ -4,7 +4,6 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.4rem;
-  margin-top: 40px;
 }
 
 .lineup {
@@ -19,4 +18,10 @@
 
 .missing {
   filter: brightness(0);
+}
+
+@media (width < 1400px) {
+  .lineup img {
+    width: 80px;
+  }
 }

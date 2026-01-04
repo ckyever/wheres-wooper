@@ -15,16 +15,19 @@
 
 .sky {
   background: url("../assets/sky-background.png") bottom/100% auto no-repeat;
-  flex: 1;
 }
 
 .ocean {
+  outline: 1px solid var(--ocean-colour);
+  height: 40px;
   background-color: var(--ocean-colour);
 }
 
 .grass {
+  flex: 1;
   background: url("../assets/grass-background.png") top/100% auto no-repeat;
   background-color: var(--grass-colour);
+  display: flex;
 }
 
 .container {
@@ -33,7 +36,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
 }
 
 .actions {

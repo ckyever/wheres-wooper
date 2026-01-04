@@ -11,7 +11,11 @@ function Targets({ targetPokemon }) {
                 key={pokemon.hash}
                 id={pokemon.hash}
                 src={pokemon.image}
-                className={pokemon.isFound ? "" : styles.missing}
+                className={
+                  pokemon.isFound
+                    ? `${styles.pokemon}`
+                    : `${styles.pokemon} ${styles.missing}`
+                }
               />
             ))
           : "Loading..."}

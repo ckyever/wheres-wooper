@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   gap: 12px;
-  width: 90%;
+  width: 95%;
+  max-width: 2550px;
 }
 
 .pokemon {
@@ -24,4 +25,10 @@
   content: url("../assets/pokeball.png");
   cursor: default;
   z-index: 1;
+}
+
+@media (width < 1400px) {
+  .pokemon {
+    width: 80px;
+  }
 }
