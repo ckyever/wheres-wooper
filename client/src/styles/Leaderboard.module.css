@@ -48,7 +48,10 @@
   color: var(--secondary-accent-colour);
 }
 
-@media (width < 550px) {
+@media (width < 620px) {
+  .heading {
+    font-size: 2rem;
+  }
   .container {
     min-height: 270px;
   }
@@ -59,7 +62,7 @@
 
   .leaderboard th,
   .leaderboard td {
-    padding: 0 8px;
+    padding: 0 4px;
   }
 
   .username {
