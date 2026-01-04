@@ -49,37 +49,31 @@ function EndScreen({ show, time, highscoreId }) {
           </span>
           !
         </p>
-
-        {highscoreId ? (
-          <div>
-            {showLeaderboard ? (
-              <Leaderboard currentHighscore={highscoreId} />
-            ) : (
-              <form
-                className={styles["highscore-form"]}
-                onSubmit={(event) => handleSubmit(event)}
+        <div>
+          {showLeaderboard ? (
+            <Leaderboard currentHighscore={highscoreId} />
+          ) : (
+            <form
+              className={styles["highscore-form"]}
+              onSubmit={(event) => handleSubmit(event)}
+            >
+              <input
+                className={styles.username}
+                placeholder="Enter a username"
+                aria-label="username"
+                maxLength={20}
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              <button
+                type="submit"
+                className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
               >
-                <input
-                  className={styles.username}
-                  placeholder="Enter a username"
-                  aria-label="username"
-                  maxLength={20}
-                  value={username}
-                  onChange={(event) => setUsername(event.target.value)}
-                />
-                <button
-                  type="submit"
-                  className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
-                >
-                  Submit
-                </button>
-              </form>
-            )}
-          </div>
-        ) : (
-          <Leaderboard />
-        )}
-
+                Submit
+              </button>
+            </form>
+          )}
+        </div>
         <button
           type="button"
           className={buttonStyles["dialog-button"]}
