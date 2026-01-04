@@ -79,4 +79,23 @@ const areTargetIdsMatching = (sessionTargetIds, userTargetIds) => {
   return sortString(sessionTargetIds) === sortString(userTargetIds);
 };
 
-export { startTimer, stopTimer };
+const cleanupSession = async (req, res) => {
+  const { sessionId } = req.params;
+
+  try {
+    const session = deleteSession(sessionId);
+
+    if (session) {
+      return res.json({ message: "Successfully cleaned up session" });
+    } else {
+      return res.json({ message: "Session has already been cleaned up" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
+      .json({ message: "Failed to clean up session" });
+  }
+};
+
+export { startTimer, stopTimer, cleanupSession };
