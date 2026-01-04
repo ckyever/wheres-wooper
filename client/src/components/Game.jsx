@@ -39,9 +39,7 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
             })
             .then((data) => {
               setCompletionTime(data.time);
-              if (data.isValidHighscore) {
-                setHighscoreId(data.highscoreId);
-              }
+              setHighscoreId(data.highscoreId);
             })
             .catch((error) => console.error(error));
           setShowEndScreen(true);
