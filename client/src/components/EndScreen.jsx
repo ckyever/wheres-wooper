@@ -47,11 +47,11 @@ function EndScreen({ show, time, highscoreId }) {
           <span className={styles.time}>
             {convertMillisecondsToDurationString(time)}
           </span>
+          !
         </p>
 
         {highscoreId ? (
           <div>
-            <p>You set a new highscore!</p>
             {showLeaderboard ? (
               <Leaderboard currentHighscore={highscoreId} />
             ) : (

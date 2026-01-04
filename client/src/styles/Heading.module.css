@@ -10,3 +10,9 @@
 .heading img {
   width: 60px;
 }
+
+@media (width < 550px) {
+  .heading {
+    font-size: 2.5rem;
+  }
+}

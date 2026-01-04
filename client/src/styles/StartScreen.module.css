@@ -28,3 +28,15 @@
 .loading {
   color: var(--main-accent-colour);
 }
+
+@media (width < 1100px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (width < 550px) {
+  .container {
+    font-size: 1.5rem;
+  }
+}
