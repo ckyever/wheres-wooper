@@ -14,48 +14,6 @@ const insertHighscore = async (time) => {
   }
 };
 
-const countHighscore = async () => {
-  try {
-    const highscoreCount = await prisma.highscore.count();
-    return highscoreCount;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const getSlowestHighscore = async () => {
-  try {
-    const highscore = await prisma.highscore.findFirst({
-      orderBy: {
-        time: "desc",
-      },
-      select: {
-        id: true,
-        time: true,
-      },
-    });
-    return highscore;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const deleteHighscore = async (id) => {
-  try {
-    const highscore = await prisma.highscore.delete({
-      where: {
-        id: id,
-      },
-    });
-    return highscore;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 const updateEmptyHighscoreUsername = async (id, username) => {
   try {
     const result = await prisma.highscore.update({
@@ -91,11 +49,4 @@ const getHighscores = async () => {
   }
 };
 
-export {
-  insertHighscore,
-  countHighscore,
-  getSlowestHighscore,
-  deleteHighscore,
-  updateEmptyHighscoreUsername,
-  getHighscores,
-};
+export { insertHighscore, updateEmptyHighscoreUsername, getHighscores };

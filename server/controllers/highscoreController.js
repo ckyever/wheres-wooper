@@ -2,29 +2,9 @@ import { body, validationResult, matchedData } from "express-validator";
 import { constants } from "http2";
 
 import {
-  countHighscore,
-  getSlowestHighscore,
   updateEmptyHighscoreUsername,
   getHighscores,
-  deleteHighscore,
 } from "../models/highscoreModel.js";
-
-const HIGHSCORE_LIMIT = 10;
-
-const isValidHighscore = async (time) => {
-  const highscoreCount = await countHighscore();
-  if (highscoreCount < HIGHSCORE_LIMIT) {
-    return true;
-  } else {
-    const slowestHighscore = await getSlowestHighscore();
-    if (time < slowestHighscore.time) {
-      await deleteHighscore(slowestHighscore.id);
-      return true;
-    }
-  }
-
-  return false;
-};
 
 const validateUsername = [
   body("username")
@@ -75,4 +55,4 @@ const getAllHighscores = async (req, res) => {
   }
 };
 
-export { isValidHighscore, setHighscoreUsername, getAllHighscores };
+export { setHighscoreUsername, getAllHighscores };
