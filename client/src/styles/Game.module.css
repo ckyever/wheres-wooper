@@ -50,3 +50,16 @@
   top: 30px;
   right: 30px;
 }
+
+@media (width < 800px) {
+  .actions {
+    top: 60px;
+    left: 10px;
+    font-size: 0.8rem;
+  }
+
+  .timer {
+    top: 60px;
+    right: 10px;
+  }
+}
