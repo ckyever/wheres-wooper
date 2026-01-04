@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import EndScreen from "./EndScreen.jsx";
 import Heading from "./Heading.jsx";
+import RestartButton from "./RestartButton.jsx";
 import SearchArea from "./SearchArea.jsx";
 import Targets from "./Targets.jsx";
 import Timer from "./Timer.jsx";
 
-import buttonStyles from "../styles/Button.module.css";
 import styles from "../styles/Game.module.css";
 import searchAreaStyles from "../styles/SearchArea.module.css";
 
@@ -60,15 +60,7 @@ function Game({ isGameInProgress, sessionId, targetPokemon, pokemonList }) {
     <div className={styles.game}>
       <div className={styles.sky}>
         <div className={styles.actions}>
-          {!showEndScreen && (
-            <button
-              type="button"
-              className={`${buttonStyles["dialog-button"]} ${buttonStyles.secondary}`}
-              onClick={() => window.location.reload()}
-            >
-              Restart
-            </button>
-          )}
+          {!showEndScreen && <RestartButton sessionId={sessionId} />}
         </div>
         <Heading />
         <div className={styles.timer}>
