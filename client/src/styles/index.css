@@ -97,3 +97,9 @@ body {
 dialog {
   background-color: #f3f3ff;
 }
+
+@media (width < 550px) {
+  body {
+    overflow: visible;
+  }
+}
