@@ -22,6 +22,7 @@
 }
 
 .pokemon.found {
+  pointer-events: none;
   content: url("../assets/pokeball.png");
   cursor: default;
   z-index: 1;
