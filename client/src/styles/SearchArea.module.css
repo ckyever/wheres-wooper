@@ -33,3 +33,9 @@
     width: 80px;
   }
 }
+
+@media (width < 800px) {
+  .search-area {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
