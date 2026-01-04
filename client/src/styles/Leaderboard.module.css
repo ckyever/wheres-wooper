@@ -58,6 +58,7 @@
   }
   .container {
     min-height: 270px;
+    min-width: 360px;
   }
 
   .leaderboard {
