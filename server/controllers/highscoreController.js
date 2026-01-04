@@ -3,7 +3,8 @@ import { constants } from "http2";
 
 import {
   updateEmptyHighscoreUsername,
-  getHighscores,
+  getTopHighscores,
+  getHighscoreRankPreview,
 } from "../models/highscoreModel.js";
 
 const validateUsername = [
@@ -38,12 +39,36 @@ const setHighscoreUsername = [
   },
 ];
 
-const getAllHighscores = async (req, res) => {
+const getHighscores = async (req, res) => {
+  const { new_highscore_id } = req.query;
+
   try {
-    const highscores = await getHighscores();
-    const jsonHighscores = highscores.map((score) => {
+    let highscores = await getTopHighscores();
+
+    if (new_highscore_id > 0) {
+      console.log(highscores);
+      console.log(new_highscore_id);
+      const newScoreIsAHighscore = highscores.some(
+        (score) => score.id == new_highscore_id
+      );
+
+      if (!newScoreIsAHighscore) {
+        // Show where the current highscore is
+        const newHighscorePreview = await getHighscoreRankPreview(
+          new_highscore_id
+        );
+        if (newHighscorePreview) {
+          highscores = [...highscores, ...newHighscorePreview];
+        }
+      }
+    }
+
+    const jsonHighscores = highscores.map((score, index) => {
       const newScore = score;
+
+      // Need to convert BigInt into a string to send via json
       newScore.time = String(newScore.time);
+      newScore.rank = score.rank ? String(score.rank) : index;
       return newScore;
     });
     return res.json({ highscores: jsonHighscores });
@@ -55,4 +80,4 @@ const getAllHighscores = async (req, res) => {
   }
 };
 
-export { setHighscoreUsername, getAllHighscores };
+export { setHighscoreUsername, getHighscores };

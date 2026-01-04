@@ -2,11 +2,11 @@ import { Router } from "express";
 
 import {
   setHighscoreUsername,
-  getAllHighscores,
+  getHighscores,
 } from "../controllers/highscoreController.js";
 
 const highscoreRouter = Router();
-highscoreRouter.get("/", getAllHighscores);
+highscoreRouter.get("/", getHighscores);
 highscoreRouter.put("/:highscoreId/username", setHighscoreUsername);
 
 export { highscoreRouter };
