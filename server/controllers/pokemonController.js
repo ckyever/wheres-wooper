@@ -85,7 +85,11 @@ const getPokemonList = async (req, res) => {
     const startNumber = 1 + i * bucketRange;
     const endNumber = (i + 1) * bucketRange;
     const randomIndex = getRandomNumberInRange(startNumber, endNumber);
-    await addPokemonToTarget(pokemonList[randomIndex], targets);
+
+    // Wooper is already in the targets so no need to add
+    if (randomIndex != wooperIndex) {
+      await addPokemonToTarget(pokemonList[randomIndex], targets);
+    }
     targetIdString += pokemonList[randomIndex].id;
   }
 
