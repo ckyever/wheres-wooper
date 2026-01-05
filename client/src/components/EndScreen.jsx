@@ -42,13 +42,16 @@ function EndScreen({ show, time, highscoreId }) {
   return (
     <dialog id="end-screen-dialog" className={styles["end-screen"]}>
       <div className={styles.container}>
-        <p>
-          Congrats you finished the game in{" "}
-          <span className={styles.time}>
-            {convertMillisecondsToDurationString(time)}
-          </span>
-          !
-        </p>
+        {time > 0 ? (
+          <p>
+            Congrats you finished the game in{" "}
+            <span className={styles.time}>
+              {convertMillisecondsToDurationString(time)}
+            </span>
+          </p>
+        ) : (
+          <p>Calculating time...</p>
+        )}
         <div>
           {showLeaderboard ? (
             <Leaderboard currentHighscore={highscoreId} />
