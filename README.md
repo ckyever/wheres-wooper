@@ -4,6 +4,8 @@ Where's Wally but with randomly generated Pokémon. Fastest times are kept track
 
 👉 [Live Demo](https://wheres-wooper.pages.dev)
 
+![Website Screenshot](./screenshot.png)
+
 ## Acknowledgement
 
 Inspired from [The Odin Project](https://www.theodinproject.com/lessons/nodejs-where-s-waldo-a-photo-tagging-app)
